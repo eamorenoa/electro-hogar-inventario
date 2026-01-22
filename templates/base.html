@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Electro Hogar{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS propio -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<nav class="navbar navbar-dark" style="background-color:#000;">
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <div class="d-flex align-items-center">
+            <img src="{{ url_for('static', filename='img/logo.png') }}"
+                 alt="Electro Hogar"
+                 style="height:40px; margin-right:10px;">
+
+            <span class="navbar-brand fw-bold text-warning">
+                Electro Hogar
+            </span>
+        </div>
+
+        {% if session.get('usuario') %}
+            <a href="/logout" class="btn btn-sm btn-warning text-dark">
+                Cerrar sesión
+            </a>
+        {% endif %}
+    </div>
+</nav>
+
+<!-- CONTENIDO -->
+<div class="container mt-5">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

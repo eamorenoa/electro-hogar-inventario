@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Editar Producto | Electro Hogar{% endblock %}
+
+{% block content %}
+<h4>Editar Producto</h4>
+
+<form method="POST" class="mt-3">
+
+    <div class="mb-3">
+        <label class="form-label">Nombre del producto</label>
+        <input type="text" name="nombre" class="form-control"
+               value="{{ producto['nombre'] }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Categoría</label>
+        <select name="categoria" class="form-control" required>
+            <option {{ 'selected' if producto['categoria'] == 'Nevera' }}>Nevera</option>
+            <option {{ 'selected' if producto['categoria'] == 'Lavadora' }}>Lavadora</option>
+            <option {{ 'selected' if producto['categoria'] == 'Televisor' }}>Televisor</option>
+            <option {{ 'selected' if producto['categoria'] == 'Microondas' }}>Microondas</option>
+            <option {{ 'selected' if producto['categoria'] == 'Otro' }}>Otro</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Marca</label>
+        <input type="text" name="marca" class="form-control"
+               value="{{ producto['marca'] }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Precio</label>
+        <input type="number" name="precio" class="form-control"
+               value="{{ producto['precio'] }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Stock</label>
+        <input type="number" name="stock" class="form-control"
+               value="{{ producto['stock'] }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Descripción</label>
+        <textarea name="descripcion" class="form-control">{{ producto['descripcion'] }}</textarea>
+    </div>
+
+    <button class="btn btn-warning">Guardar Cambios</button>
+    <a href="/productos" class="btn btn-secondary">Cancelar</a>
+
+</form>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Inventario | Electro Hogar{% endblock %}
+
+{% block content %}
+<h4>Inventario de Productos</h4>
+
+{% if productos|length == 0 %}
+    <div class="alert alert-info mt-3">
+        No hay productos registrados.
+    </div>
+{% else %}
+<table class="table table-bordered table-striped mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Marca</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Archivo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in productos %}
+        <tr>
+            <td>{{ p["nombre"] }}</td>
+            <td>{{ p["categoria"] }}</td>
+            <td>{{ p["marca"] }}</td>
+            <td>${{ p["precio"] }}</td>
+            <td>{{ p["stock"] }}</td>
+            <td>
+                {% if p["archivo"] %}
+                    <a href="/uploads/{{ p['archivo'] }}" target="_blank">
+                        Ver archivo
+                    </a>
+                {% else %}
+                    —
+                {% endif %}
+            </td>
+            <td>
+                <a href="/productos/editar/{{ p['id'] }}"
+                   class="btn btn-sm btn-warning">Editar</a>
+
+                <a href="/productos/eliminar/{{ p['id'] }}"
+                   class="btn btn-sm btn-danger"
+                   onclick="return confirm('¿Seguro que deseas eliminar este producto?')">
+                   Eliminar
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+<a href="/dashboard" class="btn btn-secondary mt-3">Volver</a>
+{% endblock %}
