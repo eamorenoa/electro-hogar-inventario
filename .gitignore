@@ -1,0 +1,15 @@
+# Entorno virtual
+venv/
+
+# Base de datos local
+database.db
+
+# Archivos subidos por usuarios
+uploads/
+
+# Archivos temporales
+__pycache__/
+*.pyc
+
+# Configuración local
+.env
